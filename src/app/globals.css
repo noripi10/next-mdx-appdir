@@ -15,14 +15,17 @@ pre {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-top: none;
-  line-height: 1.1em;
+  line-height: 1.2em;
   white-space: pre-wrap;
-  font-family: sans-serif;
   margin: 1px 0;
+  font-family: var(--font-fira-code);
 }
 
 code {
   counter-reset: line;
+  font-family: 'Fira Code' sans-serif;
+  font-size: 0.8rem;
+  font-family: var(--font-fira-code);
 }
 
 code > [data-line]::before {

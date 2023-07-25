@@ -1,13 +1,16 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export const ToggleTheme = ({ theme }: { theme: string }) => {
+  // 初期値(Init or Reload)はCookieから取得
+  const [_theme, setTheme] = useState(theme);
+
   useEffect(() => {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove('light');
     }
   }, [theme]);
 
@@ -15,10 +18,19 @@ export const ToggleTheme = ({ theme }: { theme: string }) => {
     <button
       className='bg-blue-500 text-white rounded p-1 text-sm'
       onClick={() => {
-        // const currentTheme = localStorage.getItem('theme');
         const root = document.getElementsByTagName('html')[0];
-        root.classList.toggle('dark');
 
+        if (_theme === 'dark') {
+          root.classList.add('light');
+          root.classList.remove('dark');
+          setTheme('light');
+        } else {
+          root.classList.add('dark');
+          root.classList.remove('light');
+          setTheme('dark');
+        }
+
+        // Reloadl時などのちらつき防止の為にCookieに保存しておく
         if (root.classList.contains('dark')) {
           document.cookie = `theme=dark`;
         } else {

@@ -4,7 +4,6 @@ import fs from 'fs/promises';
 import path from 'path';
 
 import Hello from './hello.mdx';
-import { ToggleTheme } from '@/components/ToggleTheme';
 
 const getBlogList = async () => {
   const blogDir = 'src/app/blog';

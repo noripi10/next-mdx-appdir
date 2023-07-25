@@ -10,6 +10,5 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
     h1: ({ children }) => <h1 style={{ fontSize: '32px' }}>{children}</h1>,
-    // pre: Pre,
   };
 }

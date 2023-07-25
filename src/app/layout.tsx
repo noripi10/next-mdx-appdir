@@ -3,9 +3,10 @@ import { cookies } from 'next/headers';
 
 import './globals.css';
 
-import { Inter } from 'next/font/google';
+import { Inter, Fira_Code } from 'next/font/google';
 import { ToggleTheme } from '@/components/ToggleTheme';
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const firaCode = Fira_Code({ subsets: ['latin'], variable: '--font-fira-code' });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang='jp' className={themeValue}>
-      <body className={`${inter.className} container m-auto dark:bg-gray-800 dark:text-white`}>
+      <body className={`${firaCode.variable} ${inter.variable} container m-auto dark:bg-gray-800 dark:text-white`}>
         <div className='absolute top-1 right-1'>
           <ToggleTheme theme={themeValue} />
         </div>
