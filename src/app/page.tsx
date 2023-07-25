@@ -1,95 +1,55 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import Link from 'next/link';
 
-export default function Home() {
+import fs from 'fs/promises';
+import path from 'path';
+
+import Hello from './hello.mdx';
+import { ToggleTheme } from '@/components/ToggleTheme';
+
+const getBlogList = async () => {
+  const blogDir = 'src/app/blog';
+  const list = await fs.readdir(path.join(process.cwd(), blogDir), {});
+  const blogs = list.filter((row) => !row.endsWith('.tsx'));
+
+  return blogs;
+};
+
+export default async function Home() {
+  const blogList = await getBlogList();
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
+    <div className='flex flex-col gap-2 px-2'>
+      <div className='py-6'>
+        <Hello />
+      </div>
+
+      <div className='p-4'>
+        <h2>Blog List</h2>
+        <ul className='flex gap-4 flex-wrap'>
+          {blogList.map((blog) => (
+            <Link key={blog} href={`/blog/${blog}`} passHref>
+              <li className='underline'>{blog}</li>
+            </Link>
+          ))}
+        </ul>
+      </div>
+
+      <div className='border p-2'>
+        <h3>tailwind.css + change noflash with cookie</h3>
         <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+          <code>https://github.com/vercel/next.js/discussions/47952</code>
         </div>
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className='border p-2'>
+        <h3>mdx syntax highlight</h3>
+        <div>
+          <code>https://claritydev.net/blog/copy-to-clipboard-button-nextjs-mdx-rehype</code>
+          <br />
+          <code>https://rehype-pretty-code.netlify.app/</code>
+          <br />
+          <code>https://unpkg.com/browse/shiki@0.14.2/themes/</code>
+        </div>
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    </div>
+  );
 }
