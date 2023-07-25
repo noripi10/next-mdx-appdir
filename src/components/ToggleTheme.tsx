@@ -10,7 +10,7 @@ export const ToggleTheme = ({ theme }: { theme: string }) => {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
-      document.documentElement.classList.remove('light');
+      document.documentElement.classList.add('light');
     }
   }, [theme]);
 
