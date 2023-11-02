@@ -7,7 +7,7 @@ export default function Wrapper({ children }) {
 
 ## mdx component import sample
 
-```tsx title="example.js" showLineNumbers
+```tsx title="example.js" showLineNumbers caption="..."
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 // 🔥 Super granular and accurate highlighting
@@ -32,5 +32,32 @@ export default class MyDocument extends Document {
 
 export const Hoge = () => {
   return <div>Hoge</div>;
+};
+```
+
+<br />
+
+```tsx title="CopyButton.tsx" showLineNumbers caption="..."
+'use client';
+
+import { useState } from 'react';
+
+export const CopyButton = ({ text }: { text: any }) => {
+  const [isCopied, setIsCopied] = useState(false);
+
+  const copy = async () => {
+    await navigator.clipboard.writeText(text);
+    setIsCopied(true);
+
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 10000);
+  };
+
+  return (
+    <button disabled={isCopied} onClick={copy}>
+      {isCopied ? 'Copied!' : 'Copy'}
+    </button>
+  );
 };
 ```
