@@ -3,7 +3,8 @@ import Link from 'next/link';
 import fs from 'fs/promises';
 import path from 'path';
 
-import Hello from './hello.mdx';
+import Hello from '../components/mdx/hello.mdx';
+import Gfm from '../components/mdx/gfm.md';
 
 const getBlogList = async () => {
   const blogDir = 'src/app/blog';
@@ -19,6 +20,10 @@ export default async function Home() {
     <div className='flex flex-col gap-2 px-2'>
       <div className='py-6'>
         <Hello />
+      </div>
+
+      <div className='py-6'>
+        <Gfm />
       </div>
 
       <div className='p-4'>

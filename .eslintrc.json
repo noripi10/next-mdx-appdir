@@ -3,7 +3,7 @@
   "overrides": [
     {
       "files": ["*.mdx"],
-      "extends": "plugin:mdx/recommended"
+      "extends": ["plugin:markdown/recommended", "plugin:mdx/recommended"]
     }
   ]
 }

@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang='jp' className={themeValue}>
-      <body className={`${firaCode.variable} ${inter.variable} container m-auto dark:bg-gray-800 dark:text-white`}>
+      <body className={`${firaCode.variable} ${inter.variable} container m-auto dark:bg-black/90 dark:text-white`}>
         <div className='absolute top-1 right-1'>
           <ToggleTheme theme={themeValue} />
         </div>
