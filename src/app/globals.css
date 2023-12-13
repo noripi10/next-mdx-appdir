@@ -118,3 +118,13 @@ div[data-rehype-pretty-code-title] {
 .dark div[data-theme='dark'] {
   display: block; /* ダークモードでは表示 */
 }
+
+.dark pre[data-theme='dark'] {
+  border: solid 1px #211f1f;
+}
+
+[data-chars-id='v'] {
+  border-bottom-color: rgb(219 39 119 / var(--tw-border-opacity));
+  background-color: #9f123980;
+  color: rgb(249 168 212 / var(--tw-text-opacity)) !important;
+}
